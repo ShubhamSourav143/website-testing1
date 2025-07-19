@@ -1,0 +1,311 @@
+/**
+ * Advanced Animations for Pradyogiki
+ * 
+ * This file contains cutting-edge animation techniques:
+ * - Parallax effects
+ * - 3D transformations
+ * - Interactive animations
+ * - Responsive animations
+ */
+
+/* ===== UTILITY CLASSES ===== */
+
+/* 3D Perspective Container */
+.perspective-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Parallax Layers */
+.parallax-layer {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.parallax-layer-back {
+  transform: translateZ(-100px) scale(1.5);
+}
+
+.parallax-layer-base {
+  transform: translateZ(0);
+}
+
+.parallax-layer-front {
+  transform: translateZ(50px) scale(0.9);
+}
+
+/* 3D Card Flip */
+.flip-card-container {
+  perspective: 1000px;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-container:hover .flip-card-inner,
+.flip-card-container.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* 3D Hover Effects */
+.hover-3d {
+  transition: transform 0.2s ease;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1);
+}
+
+.hover-3d:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale3d(1.05, 1.05, 1.05);
+}
+
+/* Magnetic Effect */
+.magnetic {
+  transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* Ripple Effect */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* ===== ADVANCED ANIMATIONS ===== */
+
+/* Parallax Scroll Animation */
+@keyframes parallax-scroll {
+  0% {
+    transform: translateY(0) translateZ(0);
+  }
+  100% {
+    transform: translateY(-100px) translateZ(0);
+  }
+}
+
+/* 3D Rotation Animation */
+@keyframes rotate-3d {
+  0% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  25% {
+    transform: perspective(1000px) rotateX(10deg) rotateY(10deg) rotateZ(5deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(20deg) rotateZ(0deg);
+  }
+  75% {
+    transform: perspective(1000px) rotateX(-10deg) rotateY(10deg) rotateZ(-5deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+}
+
+/* Floating Animation with 3D Effect */
+@keyframes float-3d {
+  0%, 100% {
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotateX(3deg) rotateY(3deg);
+  }
+  50% {
+    transform: translateY(-20px) rotateX(0deg) rotateY(5deg);
+  }
+  75% {
+    transform: translateY(-10px) rotateX(-3deg) rotateY(3deg);
+  }
+}
+
+/* Morphing Animation */
+@keyframes morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 20% 60% 30% 70% / 70% 30% 60% 40%;
+  }
+  75% {
+    border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
+  }
+}
+
+/* Text Reveal Animation */
+@keyframes text-reveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Glitch Effect */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-5px, 5px);
+  }
+  40% {
+    transform: translate(-5px, -5px);
+  }
+  60% {
+    transform: translate(5px, 5px);
+  }
+  80% {
+    transform: translate(5px, -5px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Typewriter Effect */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-cursor {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: currentColor;
+  }
+}
+
+/* Staggered Fade In */
+@keyframes staggered-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== ANIMATION CLASSES ===== */
+
+.animate-rotate-3d {
+  animation: rotate-3d 8s infinite ease-in-out;
+}
+
+.animate-float-3d {
+  animation: float-3d 6s infinite ease-in-out;
+}
+
+.animate-morph {
+  animation: morph 8s infinite ease-in-out;
+}
+
+.animate-text-reveal {
+  display: inline-block;
+  animation: text-reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.animate-glitch {
+  animation: glitch 0.5s infinite;
+}
+
+.animate-typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid;
+  width: 0;
+  animation: 
+    typewriter 2s steps(40, end) forwards,
+    blink-cursor 0.75s step-end infinite;
+}
+
+/* Staggered children animations */
+.stagger-children > * {
+  opacity: 0;
+  animation: staggered-fade-in 0.5s ease-out forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.7s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.8s; }
+
+/* Scroll-triggered animations */
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ANIMATIONS ===== */
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .animate-rotate-3d,
+  .animate-float-3d,
+  .animate-morph {
+    animation-duration: 4s; /* Shorter animations on mobile */
+  }
+}
